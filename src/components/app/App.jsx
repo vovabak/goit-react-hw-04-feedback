@@ -5,25 +5,23 @@ import { Section } from "components/section";
 import { Notification } from "components/notification";
 import { Container } from './App.styled';
 
-const options = ['Good', 'Bad', 'Neutral'];
 
 export const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
-  const [bad, setBad] = useState(0);
-  
+  const [bad, setBad] = useState(0);  
   
   const countFeedback = e => {
     const name = e.currentTarget.name;    
     
     switch (name) {
-      case 'Good':
+      case 'good':
         setGood(value => value + 1)
         break;
-      case 'Neutral':
+      case 'neutral':
         setNeutral(value => value + 1)
         break;
-      case 'Bad':
+      case 'bad':
         setBad(value => value + 1)
         break;
     
@@ -44,7 +42,7 @@ export const App = () => {
       <Container>
         <Section title='Please leave feedback'>
           <FeedbackOptions
-              options={options}
+              options={Object.keys({ good, neutral, bad })}
               onLeaveFeedback={countFeedback}
           />
           {countTotalFeedback() === 0 ?
